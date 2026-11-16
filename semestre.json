@@ -1,0 +1,722 @@
+{
+ "version": 3,
+ "generado": "2026-11-16",
+ "fuentes": [
+  "Planes docentes del semestre 2026-1 (resumidos)",
+  "Índices de los materiales didácticos (PID) disponibles",
+  "Enunciados de las PACs del semestre"
+ ],
+ "semestre": {
+  "id": "2026-1",
+  "nombre": "Curs 2026-27 / 1r semestre",
+  "inicio": "2026-09-23",
+  "fin": "2027-02-03"
+ },
+ "asignaturas": [
+  {
+   "id": "vof",
+   "codigo": "01.523",
+   "nombre": "Valoració d'operacions financeres",
+   "abreviatura": "VOF",
+   "creditos": 6,
+   "caracter": "obligatoria",
+   "idioma": "català",
+   "profesorado": [
+    {
+     "nombre": "Yadira Alejandra Salazar Achig",
+     "rol": "responsable"
+    }
+   ],
+   "evaluacion": {
+    "modelo": "AC + PF",
+    "componentes": [
+     {
+      "id": "vof-ac",
+      "nombre": "Avaluació continuada (4 PACs)",
+      "peso": 0.6
+     },
+     {
+      "id": "vof-pf",
+      "nombre": "Prova final",
+      "peso": 0.4
+     }
+    ],
+    "minimos": {
+     "pf": 4.0,
+     "nota_final": 5.0,
+     "pacs_entregadas": 3,
+     "nota_minima_por_pac_para_promediar": 4.0,
+     "media_ac": "C+"
+    },
+    "reglas": [
+     "Cada PAC pesa un 25 % de la AC (un 15 % de la nota final). Los enunciados de la PAC1 y la PAC2 puntúan sobre 10.",
+     "Hay que entregar al menos 3 de las 4 PACs y sacar al menos un 4 en cada una para que promedien.",
+     "La media de la AC tiene que ser C+ o más.",
+     "La PF es online con Smowl (webcam más un segundo dispositivo con trípode), se puntúa de 0 a 10, entra todo el temario y pide un 4 como mínimo.",
+     "Nota final de 5 o más para aprobar."
+    ],
+    "escala_pac": 10
+   },
+   "ia": {
+    "permitida": null,
+    "detalle": ""
+   },
+   "tipo_nota": "numerica",
+   "tabla_equivalencias": null,
+   "calculo": {
+    "tipo": "ac_pf",
+    "items": [
+     "vof-pac1",
+     "vof-pac2",
+     "vof-pac3",
+     "vof-pac4"
+    ],
+    "pf": "vof-pf",
+    "peso_ac": 0.6,
+    "peso_pf": 0.4,
+    "min_item": 4,
+    "min_entregadas": 3,
+    "min_media_ac": 5,
+    "min_pf": 4,
+    "aprobado": 5
+   }
+  },
+  {
+   "id": "hist",
+   "codigo": "01.549",
+   "nombre": "Història econòmica",
+   "abreviatura": "HE",
+   "creditos": 6,
+   "caracter": "optativa",
+   "idioma": "català",
+   "profesorado": [
+    {
+     "nombre": "Albert Puig Gómez",
+     "rol": "responsable"
+    }
+   ],
+   "evaluacion": {
+    "modelo": "Solo AC",
+    "componentes": [
+     {
+      "id": "hist-retos",
+      "nombre": "PACs por retos (R1 a R5, cuentan las 4 mejores)",
+      "peso": 0.7
+     },
+     {
+      "id": "hist-pacg",
+      "nombre": "PAC Global (vídeo + presentación)",
+      "peso": 0.3
+     }
+    ],
+    "minimos": {
+     "pacs_entregadas": 4,
+     "nota_minima_por_pac": "C-",
+     "ac_para_hacer_pac_global": 5.0,
+     "pac_global_para_promediar": 4.0
+    },
+    "reglas": [
+     "Hay que entregar al menos 4 de los 5 retos; cuentan las 4 mejores notas, un 25 % cada una dentro del 70 %.",
+     "Cada PAC necesita un C- como mínimo.",
+     "Para hacer la PAC Global hace falta un 5 o más en la AC de retos.",
+     "La PAC Global es obligatoria y necesita un 4 o más para promediar."
+    ]
+   },
+   "ia": {
+    "permitida": false,
+    "detalle": "Prohibida para redactar las respuestas. El enunciado de la PAC2 lo repite: «No està permès l'ús de la IA»."
+   },
+   "tipo_nota": "letra",
+   "tabla_equivalencias": null,
+   "calculo": {
+    "tipo": "mejores",
+    "items": [
+     "hist-r1",
+     "hist-r2",
+     "hist-r3",
+     "hist-r4",
+     "hist-r5"
+    ],
+    "mejores": 4,
+    "peso_items": 0.7,
+    "global": "hist-pacg",
+    "peso_global": 0.3,
+    "min_item": 3,
+    "min_entregadas": 4,
+    "min_media_ac": 5,
+    "min_global": 4,
+    "aprobado": 5
+   }
+  },
+  {
+   "id": "im",
+   "codigo": "01.550",
+   "nombre": "Investigació de mercats",
+   "abreviatura": "IM",
+   "creditos": 6,
+   "caracter": "optativa",
+   "idioma": "català",
+   "profesorado": [
+    {
+     "nombre": "Enrique Rodríguez García",
+     "rol": "responsable"
+    },
+    {
+     "nombre": "Carmen Pacheco Bernal",
+     "rol": "responsable"
+    }
+   ],
+   "evaluacion": {
+    "modelo": "Solo AC",
+    "componentes": [
+     {
+      "id": "im-pacs",
+      "nombre": "4 PACs obligatorias (incluida la PAC Global)",
+      "peso": 1.0
+     }
+    ],
+    "minimos": {
+     "pacs_entregadas": 3
+    },
+    "reglas": [
+     "La PAC1 pesa un 20 % de la nota final (lo dice su enunciado). El peso del resto se publica en el aula.",
+     "Mínimo 3 PACs entregadas; la que no se entrega cuenta como 0.",
+     "Puede haber una evaluación oral asíncrona."
+    ]
+   },
+   "ia": {
+    "permitida": false,
+    "detalle": "No se puede usar para redactar ni copiar. Solo se permite para mejorar ortografía, gramática y claridad y para buscar información, y hay que citar su uso."
+   },
+   "tipo_nota": "letra",
+   "tabla_equivalencias": null,
+   "calculo": {
+    "tipo": "ponderada",
+    "items": [
+     "im-pac1",
+     "im-pac2",
+     "im-pac3",
+     "im-pacg"
+    ],
+    "min_entregadas": 3,
+    "aprobado": 5
+   }
+  },
+  {
+   "id": "xarxes",
+   "codigo": "01.600",
+   "nombre": "Anàlisi de xarxes socials i econòmiques",
+   "abreviatura": "AXSE",
+   "creditos": 6,
+   "caracter": "",
+   "idioma": "català",
+   "profesorado": [
+    {
+     "nombre": "Agustí Canals Parera",
+     "rol": "responsable"
+    },
+    {
+     "nombre": "Claudia Serra Sala",
+     "rol": "colaboradora"
+    }
+   ],
+   "metodologia": "Learning by doing, casos y aprendizaje basado en problemas.",
+   "evaluacion": {
+    "modelo": "Solo AC",
+    "componentes": [
+     {
+      "id": "xarxes-retos",
+      "nombre": "4 PACs ordinarias (R1 a R4)",
+      "peso": 1.0
+     },
+     {
+      "id": "xarxes-rg",
+      "nombre": "Repte Global (solo recuperación)",
+      "peso": null
+     }
+    ],
+    "minimos": {
+     "pacs_entregadas": 3
+    },
+    "reglas": [
+     "La nota de AC sale del cómputo de las 4 PACs.",
+     "La RG solo sirve para recuperar: si suspendes con las 4 o entregaste solo 3, aprobar la RG te da un C+ fijo.",
+     "Si ya apruebas con las PACs, la RG no sube nota.",
+     "Con menos de 3 PACs entregadas la nota es D, sin recuperación."
+    ]
+   },
+   "ia": {
+    "permitida": true,
+    "detalle": "Se permite usar IA para redactar, pero no generar con IA un Word con todas las respuestas."
+   },
+   "tipo_nota": "letra",
+   "tabla_equivalencias": null,
+   "calculo": {
+    "tipo": "recuperacion",
+    "items": [
+     "xarxes-r1",
+     "xarxes-r2",
+     "xarxes-r3",
+     "xarxes-r4"
+    ],
+    "recuperacion": "xarxes-rg",
+    "nota_recuperacion": 5,
+    "min_entregadas": 3,
+    "aprobado": 5
+   }
+  }
+ ],
+ "calendario": [
+  {
+   "id": "vof-pac1",
+   "asignatura": "vof",
+   "nombre": "PAC1 · Règims financers",
+   "apertura": "2026-09-28",
+   "cierre": "2026-10-22",
+   "peso_final": 0.15,
+   "peso_detalle": "25 % de la AC",
+   "modulos": [
+    "vof-m1"
+   ]
+  },
+  {
+   "id": "vof-pac2",
+   "asignatura": "vof",
+   "nombre": "PAC2 · Rendes financeres",
+   "apertura": "2026-10-22",
+   "cierre": "2026-11-12",
+   "peso_final": 0.15,
+   "peso_detalle": "25 % de la AC",
+   "modulos": [
+    "vof-m2"
+   ]
+  },
+  {
+   "id": "vof-pac3",
+   "asignatura": "vof",
+   "nombre": "PAC3",
+   "apertura": "2026-11-12",
+   "cierre": "2026-12-02",
+   "peso_final": 0.15,
+   "peso_detalle": "25 % de la AC",
+   "modulos": []
+  },
+  {
+   "id": "vof-pac4",
+   "asignatura": "vof",
+   "nombre": "PAC4",
+   "apertura": "2026-12-02",
+   "cierre": "2026-12-22",
+   "peso_final": 0.15,
+   "peso_detalle": "25 % de la AC",
+   "modulos": []
+  },
+  {
+   "id": "vof-pf",
+   "asignatura": "vof",
+   "nombre": "Prova final",
+   "apertura": "",
+   "cierre": "",
+   "peso_final": 0.4,
+   "peso_detalle": "40 % de la nota final, mínimo 4",
+   "modulos": [
+    "vof-m1",
+    "vof-m2",
+    "vof-m3",
+    "vof-m4"
+   ]
+  },
+  {
+   "id": "hist-r1",
+   "asignatura": "hist",
+   "nombre": "Repte 1 · La Gran Divergència",
+   "apertura": "2026-09-25",
+   "cierre": "2026-10-13",
+   "peso_final": null,
+   "peso_detalle": "25 % de los retos (70 %) si está entre las 4 mejores",
+   "modulos": [
+    "hist-m1"
+   ]
+  },
+  {
+   "id": "hist-r2",
+   "asignatura": "hist",
+   "nombre": "Repte 2 · La Revolució Industrial i la Primera Globalització",
+   "apertura": "2026-10-14",
+   "cierre": "2026-11-03",
+   "peso_final": null,
+   "peso_detalle": "25 % de los retos (70 %) si está entre las 4 mejores",
+   "modulos": [
+    "hist-m2",
+    "hist-m3"
+   ]
+  },
+  {
+   "id": "hist-r3",
+   "asignatura": "hist",
+   "nombre": "Repte 3",
+   "apertura": "2026-11-04",
+   "cierre": "2026-11-24",
+   "peso_final": null,
+   "peso_detalle": "25 % de los retos (70 %) si está entre las 4 mejores",
+   "modulos": []
+  },
+  {
+   "id": "hist-r4",
+   "asignatura": "hist",
+   "nombre": "Repte 4",
+   "apertura": "2026-11-25",
+   "cierre": "2026-12-15",
+   "peso_final": null,
+   "peso_detalle": "25 % de los retos (70 %) si está entre las 4 mejores",
+   "modulos": []
+  },
+  {
+   "id": "hist-r5",
+   "asignatura": "hist",
+   "nombre": "Repte 5",
+   "apertura": "2026-12-16",
+   "cierre": "2027-01-05",
+   "peso_final": null,
+   "peso_detalle": "25 % de los retos (70 %) si está entre las 4 mejores",
+   "modulos": []
+  },
+  {
+   "id": "hist-pacg",
+   "asignatura": "hist",
+   "nombre": "PAC Global (vídeo + presentación)",
+   "apertura": "2027-01-12",
+   "cierre": "2027-01-22",
+   "peso_final": 0.3,
+   "peso_detalle": "30 %, obligatoria, requiere AC ≥ 5",
+   "modulos": []
+  },
+  {
+   "id": "im-pac1",
+   "asignatura": "im",
+   "nombre": "PAC1 · Com es dissenya una investigació de màrqueting?",
+   "apertura": "2026-09-25",
+   "cierre": "2026-10-20",
+   "peso_final": 0.2,
+   "peso_detalle": "20 % de la nota final",
+   "modulos": [
+    "im-m1"
+   ]
+  },
+  {
+   "id": "im-pac2",
+   "asignatura": "im",
+   "nombre": "PAC2",
+   "apertura": "2026-10-21",
+   "cierre": "2026-11-19",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "im-pac3",
+   "asignatura": "im",
+   "nombre": "PAC3",
+   "apertura": "2026-11-20",
+   "cierre": "2026-12-15",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "im-pacg",
+   "asignatura": "im",
+   "nombre": "PAC Global",
+   "apertura": "2026-12-16",
+   "cierre": "2027-01-20",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "xarxes-r1",
+   "asignatura": "xarxes",
+   "nombre": "Repte 1",
+   "apertura": "2026-09-28",
+   "cierre": "2026-10-20",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "xarxes-r2",
+   "asignatura": "xarxes",
+   "nombre": "Repte 2",
+   "apertura": "2026-10-21",
+   "cierre": "2026-11-10",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "xarxes-r3",
+   "asignatura": "xarxes",
+   "nombre": "Repte 3",
+   "apertura": "2026-11-11",
+   "cierre": "2026-12-01",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "xarxes-r4",
+   "asignatura": "xarxes",
+   "nombre": "Repte 4",
+   "apertura": "2026-12-02",
+   "cierre": "2026-12-23",
+   "peso_final": null,
+   "peso_detalle": "",
+   "modulos": []
+  },
+  {
+   "id": "xarxes-rg",
+   "asignatura": "xarxes",
+   "nombre": "Repte Global (recuperación)",
+   "apertura": "2026-12-25",
+   "cierre": "2027-01-14",
+   "peso_final": null,
+   "peso_detalle": "Solo recuperación: aprobada da C+ fija",
+   "modulos": []
+  }
+ ],
+ "temario": [
+  {
+   "asignatura": "vof",
+   "modulos": [
+    {
+     "id": "vof-m1",
+     "numero": 1,
+     "titulo": "Règims financers",
+     "resumen": "Operaciones de financiación y los cuatro regímenes financieros del mercado: interés simple vencido, descuento comercial e interés compuesto a tipo constante y variable; tipos nominales y efectivos, y TAE.",
+     "temas": [
+      {
+       "id": "vof-m1-t1",
+       "titulo": "Operacions de finançament. Règims financers",
+       "resumen": "Qué es una operación financiera de financiación, sus elementos y la clasificación de los regímenes financieros."
+      },
+      {
+       "id": "vof-m1-t2",
+       "titulo": "Règim financer d'interès simple vençut",
+       "resumen": ""
+      },
+      {
+       "id": "vof-m1-t3",
+       "titulo": "Règim financer de descompte comercial",
+       "resumen": "Incluye los tipos de interés simple vencido y de descuento comercial equivalentes."
+      },
+      {
+       "id": "vof-m1-t4",
+       "titulo": "Règim financer d'interès compost a tipus constant",
+       "resumen": "Tipos nominales y efectivos, y tipos efectivos de interés compuesto equivalentes."
+      },
+      {
+       "id": "vof-m1-t5",
+       "titulo": "Règim financer d'interès compost a tipus variable",
+       "resumen": ""
+      },
+      {
+       "id": "vof-m1-t6",
+       "titulo": "TAE d'una operació financera de finançament",
+       "resumen": "Cálculo de la tasa anual equivalente por equivalencia financiera."
+      }
+     ],
+     "material": "PID_00166346"
+    },
+    {
+     "id": "vof-m2",
+     "numero": 2,
+     "titulo": "Rendes",
+     "resumen": "Clasificar y valorar rentas: constantes, variables en progresión geométrica (q) o aritmética (h), vencidas o anticipadas, inmediatas o diferidas, temporales de n términos. Conversión de tipos nominales y efectivos.",
+     "fuente": "Formato de la solución oficial de la PAC2 de VOF (2025-26)",
+     "temas": [],
+     "material": ""
+    },
+    {
+     "id": "vof-m3",
+     "numero": 3,
+     "titulo": "Préstecs i leasing",
+     "resumen": "",
+     "temas": [],
+     "material": ""
+    },
+    {
+     "id": "vof-m4",
+     "numero": 4,
+     "titulo": "Emprèstits",
+     "resumen": "",
+     "temas": [],
+     "material": ""
+    }
+   ]
+  },
+  {
+   "asignatura": "hist",
+   "modulos": [
+    {
+     "id": "hist-m1",
+     "numero": 1,
+     "titulo": "La Gran Divergència",
+     "material": "Martínez Galarraga, J., PID_00272652, FUOC",
+     "resumen": "Por qué Europa y Asia divergen: teoría malthusiana frente a Boserup, pauta europea de matrimonio y debate con la Escuela de California sobre niveles de vida hacia 1800.",
+     "fuente": "Enunciado y bibliografía de la PAC1; el número de módulo sale del orden de los retos",
+     "temas": []
+    },
+    {
+     "id": "hist-m2",
+     "numero": 2,
+     "titulo": "La Revolució Industrial",
+     "material": "Martínez Galarraga, J. (2020), PID_00272653, FUOC",
+     "resumen": "Por qué la industrialización empieza en Gran Bretaña (salarios altos y energía barata según Allen), ritmo del crecimiento (Crafts y Harley), pausa de Engels, sistema fabril y control del tiempo de trabajo, peso del algodón en las exportaciones.",
+     "fuente": "Enunciado y bibliografía de la PAC2",
+     "temas": []
+    },
+    {
+     "id": "hist-m3",
+     "numero": 3,
+     "titulo": "Creixement, convergència i divergència en la Primera Globalització (1820-1914)",
+     "material": "Ramon Muñoz, R. (2020), PID_00272650, FUOC",
+     "resumen": "Trayectorias divergentes entre regiones (Asia frente a América Latina, tablas 16 y 18), industrialización tardía y papel del Estado (Gerschenkron), imperialismo y división internacional del trabajo, transformaciones sociales y políticas.",
+     "fuente": "Enunciado y bibliografía de la PAC2",
+     "temas": []
+    },
+    {
+     "id": "hist-m4",
+     "numero": 4,
+     "titulo": "",
+     "material": "",
+     "resumen": "",
+     "temas": []
+    },
+    {
+     "id": "hist-m5",
+     "numero": 5,
+     "titulo": "",
+     "material": "",
+     "resumen": "",
+     "temas": []
+    }
+   ],
+   "nota": "Faltan los módulos 4 y 5 y los apartados de todos los módulos."
+  },
+  {
+   "asignatura": "im",
+   "modulos": [
+    {
+     "id": "im-m1",
+     "numero": 1,
+     "titulo": "Introducció i fases preliminars de la investigació de màrqueting",
+     "material": "PID_00220036",
+     "resumen": "Módulo del primer reto: qué es la investigación de marketing, cómo se formula el problema, qué fuentes de información hay y qué tipos de diseño se pueden usar.",
+     "temas": [
+      {
+       "id": "im-m1-t1",
+       "titulo": "Què és la investigació de màrqueting?",
+       "resumen": "Concepto, para qué sirve y sus límites, fases del proceso, fuentes de error, tipos de proveedores y consideraciones éticas."
+      },
+      {
+       "id": "im-m1-t2",
+       "titulo": "El problema a investigar",
+       "resumen": "Formulación del problema, etapas, información de base y universo objeto de estudio."
+      },
+      {
+       "id": "im-m1-t3",
+       "titulo": "Les fonts d'informació",
+       "resumen": "Tipos de fuentes, secundarias frente a primarias y cómo elegir la fuente."
+      },
+      {
+       "id": "im-m1-t4",
+       "titulo": "Els dissenys d'investigació",
+       "resumen": "Investigación exploratoria, descriptiva y causal; cualitativa y cuantitativa, y cómo se relacionan."
+      }
+     ]
+    }
+   ],
+   "nota": "Solo está el módulo del primer reto; faltan los demás."
+  },
+  {
+   "asignatura": "xarxes",
+   "modulos": [
+    {
+     "id": "xarxes-b1",
+     "numero": 1,
+     "titulo": "Introducció i tipus de xarxes",
+     "resumen": "",
+     "temas": [],
+     "material": ""
+    },
+    {
+     "id": "xarxes-b2",
+     "numero": 2,
+     "titulo": "Caracterització i estructura de les xarxes",
+     "resumen": "",
+     "temas": [],
+     "material": ""
+    },
+    {
+     "id": "xarxes-b3",
+     "numero": 3,
+     "titulo": "Xarxes socials i econòmiques",
+     "resumen": "",
+     "temas": [],
+     "material": ""
+    },
+    {
+     "id": "xarxes-b4",
+     "numero": 4,
+     "titulo": "El paper de les xarxes en l'economia i l'empresa",
+     "resumen": "",
+     "temas": [],
+     "material": ""
+    }
+   ],
+   "nota": "Son los bloques de contenidos del plan docente. Faltan la división real en módulos y los temas."
+  }
+ ],
+ "practicas": [
+  {
+   "id": "hist-r2-practica",
+   "pac": "hist-r2",
+   "metodo": "Tres preguntas cortas (2 puntos, unos 1.500 caracteres cada una) y un tema a desarrollar (4 puntos, 6.000-8.000 caracteres) con referencias académicas citadas con fuente, autor y página.",
+   "contenido": "Comparar la IA con la Revolució Industrial y la Segona Revolució Tecnològica; explicar con dos países por qué Asia y América Latina divergen entre 1870 y 1913 (tablas 16 y 18 del módulo 3); relacionar un rasgo de la sociedad actual con la industrialización y la globalización; analizar con datos de SlaveVoyages la relación entre comercio atlántico de esclavos, economías coloniales e industrialización.",
+   "conceptos_clave": [
+    "Allen: salarios altos y energía barata",
+    "Crafts y Harley: crecimiento gradual",
+    "Pausa de Engels",
+    "Gerschenkron: industrialización tardía",
+    "Lewis: oferta abundante de mano de obra",
+    "Tesis de Williams frente a Engerman y O'Brien",
+    "Cliometría y límites de las fuentes cuantitativas"
+   ]
+  }
+ ],
+ "examen": {
+  "vof-pf": {
+   "formato": "Online con Smowl (webcam y segundo dispositivo con trípode). Nota de 0 a 10; mínimo 4. Pesa un 40 %.",
+   "entra": [
+    "vof-m1",
+    "vof-m2",
+    "vof-m3",
+    "vof-m4"
+   ],
+   "fecha": "",
+   "metodo_resolucion": "El de las soluciones oficiales: clasificar la operación, dibujar el esquema temporal, listar variables conocidas y convertir el tipo, identificar la incógnita, plantear y resolver (valor un período antes del primer término y luego actualizar o capitalizar) y responder en una frase. TAE por equivalencia financiera entre prestación y contraprestación, restando comisiones de la prestación.",
+   "centrarse_en": []
+  }
+ },
+ "pendientes_de_completar": [
+  "Temas de los módulos 2, 3 y 4 de VOF.",
+  "Títulos de los módulos 4 y 5 de Història econòmica y los apartados de todos sus módulos.",
+  "Módulos 2 en adelante de Investigació de mercats.",
+  "División en módulos y temas de Xarxes.",
+  "Módulos de VOF PAC3 y PAC4, Història R3 a R5 y PAC Global, Investigació de mercats PAC2 en adelante y todas las de Xarxes.",
+  "Fecha de la prova final de VOF.",
+  "Pesos de Investigació de mercats PAC2, PAC3 y PAC Global, y de las PACs de Xarxes.",
+  "Carácter de Xarxes.",
+  "Tabla de equivalencias entre letra y número."
+ ]
+}
