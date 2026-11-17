@@ -1,5 +1,5 @@
 /* Cada cambio en cualquier archivo: sube VERSION y sube también este archivo. */
-const VERSION = 'semestre-v1';
+const VERSION = 'semestre-v2';
 const ARCHIVOS = [
   './',
   "KaTeX_AMS-Regular.woff2",

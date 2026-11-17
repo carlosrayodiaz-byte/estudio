@@ -71,7 +71,7 @@ const S = {
   data: null, estudio: {}, cola: [], tab: 'inicio', fAsig: 'all', fTag: null, cm: null, sel: null,
   sync: { st: '', t: null, err: '' }, capas: []
 };
-const UI = { temaTab: {}, pasos: {}, abiertas: {}, puntos: {} };
+const UI = { temaTab: {}, pasos: {}, abiertas: {}, puntos: {}, comp: {} };
 const esDemo = () => !(S.cfg.url && S.cfg.token);
 const semId = () => S.sem.semestre.id;
 const modo = () => esDemo() ? 'demo' : 'real';
@@ -143,7 +143,7 @@ async function sync(completo) {
     S.sync.st = 'ok'; S.sync.t = Date.now(); S.sync.err = '';
   } catch (e) {
     S.sync.st = 'err';
-    S.sync.err = e.message === 'token' ? 'El token no coincide con el de la Sheet' : 'No se ha podido conectar con la Sheet';
+    S.sync.err = e.message === 'token' ? 'El token no coincide con el de la Sheet' : 'No se ha podido conectar con la Sheet (' + e.message + ')';
   }
   syncando = false; pintarSync();
 }
@@ -354,7 +354,7 @@ function cardsHoy(aid) {
   const hoyS = ymd(new Date());
   const hechas = Object.values(S.data.cards).filter(s => s.primera === hoyS).length;
   const cupo = Math.max(0, (+S.cfg.nuevas || 20) - hechas);
-  const nuevasTodas = base.filter(c => !estCard(c.id));
+  const nuevasTodas = base.filter(c => !estCard(c.id) && ((modelo().temaById[c.tema] || {}).e || 0) >= 1);
   const orden = nuevasTodas.map((c, i) => ({ c, k: prioridadNueva(c).concat(i) }))
     .sort((x, y) => { for (let i = 0; i < x.k.length; i++) if (x.k[i] !== y.k[i]) return x.k[i] - y.k[i]; return 0; })
     .map(x => x.c);
@@ -435,6 +435,7 @@ VISTAS.inicio = () => {
   const av = avisos(); window.AV = av.map(x => x.go);
   let html = `<div class="hdr"><div><div class="eyebrow">${DIAS[h.getDay()]}, ${h.getDate()} de ${MESL[h.getMonth()]} <span class="syncdot"></span>${esDemo() ? '<span class="demo">DEMO</span>' : ''}</div><h1>Hoy</h1></div><button class="ibtn" onclick="X.ajustes()" aria-label="Ajustes">${ic('set', 22)}</button></div>
   <div class="semline"><span>Semana ${wk} de ${wkT}</span><span>Acaba el ${fCorta(b0)}</span></div><div class="bar"><i style="width:${semP * 100}%"></i></div>`;
+  const head = html; html = '';
   if (nx) {
     const d = dias(nx.c, h), cls = d < 3 ? 'red' : d < 7 ? 'amber' : '';
     const ent = S.data.entregas[nx.id] || {};
@@ -443,21 +444,17 @@ VISTAS.inicio = () => {
       <div class="big num ${cls}">${d === 0 ? 'Hoy' : d}${d === 0 ? '' : `<small>${d === 1 ? 'día' : 'días'}</small>`}</div>
       <div class="t">${esc(corto(nx))} · ${esc(asigDe(nx.asignatura).nombre)}</div>
       <div class="d">${abierta ? '' : 'Abre el ' + fDia(nx.a) + ' · '}Cierra el ${fDia(nx.c)}${ent.estado === 'entregada' ? ' · <span class="acc">Entregada</span>' : ''}</div>
-      <div class="btns"><button class="btn p" onclick="X.entrega('${nx.id}')">${ent.estado === 'entregada' ? 'Poner nota' : 'Marcar entregada'}</button><button class="btn o" onclick="X.verTemario('${nx.asignatura}')">Temas</button></div></div>`;
+      <div class="btns"><span class="link" onclick="X.entrega('${nx.id}')">${ent.estado === 'entregada' ? 'Poner nota' : 'Marcar entregada'}</span><button class="btn o" onclick="X.verTemario('${nx.asignatura}')">Temas</button></div></div>`;
     if (up.length > 1) html += `<div class="sec">Después</div><div class="list">${up.slice(1, 4).map(filaEntrega).join('')}</div>`;
   }
-  html += `<div class="sec">Para hoy</div>`;
+  let hoyHtml = `<div class="sec">Para hoy</div>`;
   if (m.cards.length) {
-    html += `<div class="box today"><div class="n num">${nHoy}</div><div class="l">${nHoy === 1 ? 'tarjeta' : 'tarjetas'}<br>${plural(ch.due.length, 'repaso', 'repasos')} · ${plural(ch.nuevas.length, 'nueva', 'nuevas')}</div><button class="btn a" style="margin-left:auto" onclick="X.sesion()" ${nHoy ? '' : 'disabled'}>Empezar</button></div>`;
+    hoyHtml += `<div class="box today"><div class="n num">${nHoy}</div><div class="l">${nHoy === 1 ? 'tarjeta' : 'tarjetas'}<br>${plural(ch.due.length, 'repaso', 'repasos')} · ${plural(ch.nuevas.length, 'nueva', 'nuevas')}</div><button class="btn a" style="margin-left:auto" onclick="X.sesion()" ${nHoy ? '' : 'disabled'}>Empezar</button></div>`;
   } else {
-    html += `<div class="box small muted" style="line-height:1.5">Todavía no hay material de estudio. Cuando Claude procese el PDF de un módulo, aquí te saldrán las tarjetas del día.</div>`;
+    hoyHtml += `<div class="box small muted" style="line-height:1.5">Todavía no hay material de estudio. Cuando Claude procese el PDF de un módulo, aquí te saldrán las tarjetas del día.</div>`;
   }
   if (av.length) html += `<div class="sec">Vas flojo</div><div>${av.map((x, i) => `<div class="alert ${x.cls}" onclick="AV[${i}]()"><div class="ic">${ic(x.ic, 17)}</div><div><b>${x.t}</b><p>${x.p}</p></div></div>`).join('')}</div>`;
-  html += `<div class="sec">Temario dominado <a onclick="X.tab('temario')">Ver</a></div>${S.sem.asignaturas.map(a => {
-    const ts = m.temas.filter(t => t.asig === a.id), p = ts.length ? ts.filter(t => t.e === 2).length / ts.length : 0;
-    return `<div class="prog"><span class="ab">${esc(a.abreviatura)}</span><div class="bar"><i style="width:${p * 100}%"></i></div><span class="p num">${Math.round(p * 100)} %</span></div>`;
-  }).join('')}`;
-  return `<div class="stag">${html}</div>`;
+  return `<div class="stag">${head}${hoyHtml}${html}</div>`;
 };
 function filaEntrega(c) {
   const h = hoy0(), d = dias(c.c, h), abierta = !c.a || c.a <= h;
@@ -588,7 +585,7 @@ VISTAS.temario = () => {
     mods.forEach(({ mo, ts }) => {
       const dom = mo.temas.filter(t => t.e === 2).length;
       html += `<div class="mod"><div class="mt">${esc(mo.titulo)}</div><div class="ms"><span>${dom} de ${mo.temas.length} dominados</span><div class="bar"><i style="width:${dom / mo.temas.length * 100}%"></i></div></div>
-      <div class="list">${ts.map(t => filaTema(t, '')).join('')}</div>${S.fTag ? '' : `<button class="add" onclick="X.nuevoTema('${mo.id}','${a.id}')">${ic('plus', 18)}Añadir tema</button>`}</div>`;
+      <div class="list">${ts.map(t => filaTema(t, '')).join('')}</div></div>`;
     });
   });
   if (!algo) html += `<div class="empty">Ningún tema con este filtro.</div>`;
@@ -602,10 +599,7 @@ CAPAS.tema = id => {
   const a = asigDe(t.asig), cont = t.cont;
   const tab = UI.temaTab[id] || 'res';
   let html = `<button class="back" onclick="X.atras()">${ic('left', 22)}Volver</button>
-  <div class="eyebrow">${esc(a.abreviatura)} · ${esc(t.modTitulo)}</div><h1 class="sm">${esc(t.titulo)}</h1>
-  <div class="seg" style="margin-top:18px">${ESTADOS.map((e, i) => `<button class="${t.e === i ? 'on' : ''}" onclick="X.estado('${id}',${i})">${e}</button>`).join('')}</div>
-  <div class="toggles"><button class="tg duda ${t.duda ? 'on' : ''}" onclick="X.flag('${id}','duda')">${ic('help', 16)}Duda</button><button class="tg prio ${t.prio ? 'on' : ''}" onclick="X.flag('${id}','prioridad')">${ic('star', 16)}Prioridad</button><span class="small faint" style="margin-left:auto;align-self:center">${t.ultimo ? 'Repasado el ' + fCorta(D(t.ultimo)) : 'Sin repasar'}</span></div>
-  <textarea style="margin-top:12px" placeholder="Apunte o duda concreta" onchange="X.apunte('${id}',this.value)">${esc(t.apunte)}</textarea>`;
+  <div class="eyebrow">${esc(a.abreviatura)} · ${esc(t.modTitulo)}</div><h1 class="sm">${esc(t.titulo)}</h1></h1>`;
   if (!cont) {
     html += `<div class="empty" style="padding-top:28px">Sin material todavía.<br>Cuando Claude procese el PDF de este módulo, aquí tendrás el resumen, las tarjetas y los ejercicios.</div>`;
   } else {
@@ -617,8 +611,14 @@ CAPAS.tema = id => {
       html += cont.ejercicios.map((e, i) => ejercicio(e, i)).join('');
     } else {
       html += `<div class="rich" style="margin-top:8px">${cont.resumen || '<p class="muted">Este tema no tiene resumen.</p>'}</div>`;
+      if (t.e === 0) html += `<button class="btn o w" style="margin-top:18px" onclick="X.estado('${id}',1)">Leído · pasar a Repasar</button>`;
     }
   }
+  const ctlHtml = `
+  <div class="seg" style="margin-top:18px">${ESTADOS.map((e, i) => `<button class="${t.e === i ? 'on' : ''}" onclick="X.estado('${id}',${i})">${e}</button>`).join('')}</div>
+  <div class="toggles"><button class="tg duda ${t.duda ? 'on' : ''}" onclick="X.flag('${id}','duda')">${ic('help', 16)}Duda</button><button class="tg prio ${t.prio ? 'on' : ''}" onclick="X.flag('${id}','prioridad')">${ic('star', 16)}Prioridad</button><span class="small faint" style="margin-left:auto;align-self:center">${t.ultimo ? 'Repasado el ' + fCorta(D(t.ultimo)) : 'Sin repasar'}</span></div>
+  <textarea style="margin-top:12px" placeholder="Apunte o duda concreta" onchange="X.apunte('${id}',this.value)">${esc(t.apunte)}</textarea>`;
+  html += `<div class="sec" style="margin-top:28px">Estado y notas</div>${ctlHtml}`;
   if (t.propio) html += `<button class="add" style="margin-top:24px;color:var(--red)" onclick="X.borrarTema('${id}')">${ic('x', 18)}Borrar este tema</button>`;
   return html;
 };
@@ -632,8 +632,10 @@ function ejercicio(e, i) {
     else html += `<button class="btn o w" style="margin-top:14px" onclick="X.puntos('${e.id}')">Ver puntos clave</button>`;
   } else {
     html += pasos.slice(0, k).map((p, j) => `<div class="step"><div class="st">${j + 1}. ${esc(p.titulo || '')}</div><div class="rich">${p.texto || ''}</div></div>`).join('');
-    if (k < pasos.length) html += `<button class="btn o w" style="margin-top:14px" onclick="X.paso('${e.id}')">${k === 0 ? 'Ver el primer paso' : `Siguiente paso (${k + 1} de ${pasos.length})`}</button>`;
-    else { if (e.resultado) html += `<div class="res rich">${e.resultado}</div>`; terminado = true; }
+    if (k < pasos.length) {
+      html += `<button class="btn o w" style="margin-top:14px" onclick="X.paso('${e.id}')">${k === 0 ? 'Ver el primer paso' : `Siguiente paso (${k + 1} de ${pasos.length})`}</button>`;
+      if (e.resultado) html += UI.comp[e.id] ? `<div class="res rich">${e.resultado}</div>` : `<button class="btn o w" style="margin-top:8px" onclick="X.comprobar('${e.id}')">Comprobar resultado</button>`;
+    } else { if (e.resultado) html += `<div class="res rich">${e.resultado}</div>`; terminado = true; }
   }
   if (terminado) html += `<div class="self"><button class="btn o" onclick="X.autoeval('${e.id}',false)">No me ha salido</button><button class="btn a" onclick="X.autoeval('${e.id}',true)">Me ha salido</button></div>`;
   return html + '</div>';
@@ -733,6 +735,7 @@ const X = window.X = {
   temaTab: (id, t) => { UI.temaTab[id] = t; render(); },
   voltear: (id, el) => { UI.abiertas[id] = !UI.abiertas[id]; el.classList.toggle('open'); },
   paso: id => { UI.pasos[id] = (UI.pasos[id] || 0) + 1; render(); },
+  comprobar: id => { UI.comp[id] = true; render(); },
   puntos: id => { UI.puntos[id] = true; render(); },
   autoeval: (id, bien) => {
     const s = S.data.ejercicios[id] || {};

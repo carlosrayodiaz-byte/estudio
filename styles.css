@@ -3,7 +3,7 @@
 
 :root{
   --bg:#FFFFFF; --text:#111113; --muted:#6B6B73; --faint:#A1A1AA; --line:#ECECEF; --soft:#F6F6F7; --soft2:#EFEFF1;
-  --acc:#0D9488; --acc-soft:#E7F5F3; --red:#DC2626; --red-soft:#FDECEC; --amber:#B45309; --amber-soft:#FDF3E1;
+  --acc:#0D9488; --acc-txt:#0F766E; --acc-soft:#E7F5F3; --red:#DC2626; --red-soft:#FDECEC; --amber:#B45309; --amber-soft:#FDF3E1;
   --r:16px; --pad:20px;
   --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
 }
@@ -32,12 +32,12 @@ h1{font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1.15;margin
 h1.sm{font-size:24px}
 .ibtn{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--text);flex:none}
 .ibtn:active{background:var(--soft)}
-.back{display:inline-flex;align-items:center;gap:4px;height:44px;margin-left:-8px;padding-right:10px;font-weight:600;color:var(--acc);font-size:15px}
+.back{display:inline-flex;align-items:center;gap:4px;height:44px;margin-left:-8px;padding-right:10px;font-weight:600;color:var(--acc-txt);font-size:15px}
 .sec{font-size:13px;font-weight:600;color:var(--muted);margin:30px 0 8px;display:flex;justify-content:space-between;align-items:baseline}
-.sec a,.link{color:var(--acc);font-weight:600;font-size:13px;cursor:pointer}
+.sec a,.link{color:var(--acc-txt);font-weight:600;font-size:13px;cursor:pointer}
 .tag{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 7px;border-radius:6px;background:var(--soft);color:var(--muted)}
-.tag.acc{background:var(--acc-soft);color:var(--acc)}
-.muted{color:var(--muted)} .faint{color:var(--faint)} .red{color:var(--red)} .amber{color:var(--amber)} .acc{color:var(--acc)}
+.tag.acc{background:var(--acc-soft);color:var(--acc-txt)}
+.muted{color:var(--muted)} .faint{color:var(--faint)} .red{color:var(--red)} .amber{color:var(--amber)} .acc{color:var(--acc-txt)}
 .small{font-size:13px}
 
 /* Barra de semestre */
@@ -259,3 +259,14 @@ details ul{padding:0 0 14px 18px;font-size:14px;line-height:1.5;color:#3A3A40}
 .tab .badge[hidden]{display:none}
 .btn{white-space:nowrap}
 .btns .btn{padding:0 12px;font-size:14.5px}
+
+/* Modo oscuro automático: sigue al ajuste del iPhone */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0B0B0D; --text:#F4F4F5; --muted:#A1A1AA; --faint:#71717A; --line:#26262B; --soft:#141417; --soft2:#1C1C21;
+    --acc:#2EC4B6; --acc-txt:#2EC4B6; --acc-soft:#12302D; --red:#F87171; --red-soft:#3A1717; --amber:#FBBF24; --amber-soft:#3A2A10;
+  }
+  .btn.p{background:var(--text);color:var(--bg)}
+  .btn.a{color:#0B0B0D}
+  .chip.on{color:var(--bg)}
+}
